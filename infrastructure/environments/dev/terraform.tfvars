@@ -1,0 +1,1 @@
+spa_bucket_name = "alanlviana-hello-world-tf-dev"
