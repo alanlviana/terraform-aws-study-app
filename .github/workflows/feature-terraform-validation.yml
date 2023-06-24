@@ -20,13 +20,3 @@ jobs:
       - name: Validate Terraform
         working-directory: infrastructure
         run: terraform validate
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'Terraform validation: ${{ github.sha }}'
-          title: 'Terraform Validation'
-          body: 'Terraform code changes in the "infrastructure" folder have been validated.'
-          branch: development
-          delete-branch: true
