@@ -29,5 +29,4 @@ jobs:
           title: 'Terraform Validation'
           body: 'Terraform code changes in the "infrastructure" folder have been validated.'
           branch: development
-          branch-suffix: feature/${{ github.head_ref }}
           delete-branch: true
