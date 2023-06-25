@@ -20,14 +20,3 @@ jobs:
       - name: Validate Terraform
         working-directory: infrastructure
         run: terraform validate
-
-      - name: Get branch name
-        id: branch_name
-        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
-
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v5
-        with:
-          branch: ${{ steps.branch_name.outputs.branch }}
-          base: development
