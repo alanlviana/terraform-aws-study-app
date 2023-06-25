@@ -21,9 +21,9 @@ jobs:
       - name: Configure environment
         run: |
           if [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
-            ENV_FILE=".\environments\production\terraform.tfvars"
+            ENV_FILE="./environments/production/terraform.tfvars"
           elif [[ ${{ github.ref }} == 'refs/heads/development' ]]; then
-            ENV_FILE=".\environments\dev\terraform.tfvars"
+            ENV_FILE="./environments/dev/terraform.tfvars"
           fi
           echo "ENV_FILE=${ENV_FILE}" >> $GITHUB_ENV
 
