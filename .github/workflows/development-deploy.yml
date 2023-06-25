@@ -1,0 +1,32 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches:
+      - development
+      - main
+
+jobs:
+  terraform-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Init Terraform
+        working-directory: infrastructure
+        run: terraform init
+
+      - name: Configure environment
+        run: |
+          if [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
+            ENV_FILE=".\environments\production\terraform.tfvars"
+          elif [[ ${{ github.ref }} == 'refs/heads/development' ]]; then
+            ENV_FILE=".\environments\dev\terraform.tfvars"
+          fi
+          echo "ENV_FILE=${ENV_FILE}" >> $GITHUB_ENV
+
+      - name: Apply Terraform changes
+        working-directory: infrastructure
+        run: terraform apply -var-file=${{ env.ENV_FILE }}
