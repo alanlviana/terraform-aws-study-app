@@ -32,4 +32,3 @@ jobs:
           branch: ${{ steps.branch_name.outputs.branch }}
           title: "Pull Request Title"
           body: "Pull Request Description"
-          base: development        
