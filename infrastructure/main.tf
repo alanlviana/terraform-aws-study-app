@@ -25,7 +25,7 @@ resource "aws_lambda_function" "lambda_notification_s3" {
   filename         = "${data.archive_file.lambda_notification_s3_file.output_path}"
   source_code_hash = "${data.archive_file.lambda_notification_s3_file.output_base64sha256}"
   role          = aws_iam_role.lambda_notification_s3_role.arn
-  handler       = "exports.handler"
+  handler       = "main.handler"
   runtime = "nodejs18.x"
   depends_on = [
     aws_iam_role.lambda_notification_s3_role
