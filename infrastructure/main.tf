@@ -6,9 +6,25 @@ resource "aws_s3_bucket" "spa_s3_bucket" {
   }
 }
 
+resource "aws_iam_policy" "function_notification_s3_policy" {
+  name   = var.function_notification_policy
+  policy = file("src/iam/lambda_notification_policy.json")
+}
+
+
 resource "aws_iam_role" "lambda_notification_s3_role" {
   name = var.lambda_notification_role_name
-  assume_role_policy = file("src/iam/lambda_policy.json")
+  assume_role_policy = file("src/iam/lambda_notification_assume_role_policy.json")
+}
+
+resource "aws_iam_role_policy_attachment" "function_notification_s3_policy_attachment" {
+  role = aws_iam_role.lambda_notification_s3_role.id
+  policy_arn = aws_iam_policy.function_notification_s3_policy.arn
+
+    depends_on = [
+    aws_iam_role.lambda_notification_s3_role,
+    aws_iam_policy.function_notification_s3_policy
+  ]
 }
 
 data "archive_file" "lambda_notification_s3_file" {
