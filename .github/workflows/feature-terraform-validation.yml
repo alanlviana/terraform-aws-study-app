@@ -16,6 +16,7 @@ jobs:
       - name: Setting development environment
         run: |
           ENV="dev"
+          echo "ENV=${ENV}" >> $GITHUB_ENV
 
       - name: Configure AWS Credentials Action For GitHub Actions
         uses: aws-actions/configure-aws-credentials@v1
