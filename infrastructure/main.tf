@@ -55,7 +55,7 @@ resource "aws_cloudwatch_log_group" "lambda_notification_s3_log_group" {
     prevent_destroy = false
   }
   depends_on = [
-    aws_lambda_function.lambda_notification_s3_log_group
+    aws_lambda_function.lambda_notification_s3
   ]
 }
 
