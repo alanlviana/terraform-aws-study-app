@@ -17,9 +17,9 @@ jobs:
       - name: Configure environment
         run: |
           if [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
-            ENV="PROD"
+            ENV="prod"
           elif [[ ${{ github.ref }} == 'refs/heads/development' ]]; then
-            ENV="DEV"
+            ENV="dev"
           fi
           echo "ENV=${ENV}" >> $GITHUB_ENV
 
