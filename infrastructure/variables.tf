@@ -13,3 +13,9 @@ variable "lambda_notification_name" {
 variable "lambda_notification_role_name" {
   description = "Lambda execution role name"
 }
+
+# Your policy name, it must be unique in each environment
+variable "function_notification_policy" {
+  description = "Lambda policy name"
+}
+
